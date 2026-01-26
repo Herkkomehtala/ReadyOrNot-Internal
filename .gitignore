@@ -1,0 +1,26 @@
+# Visual Studio
+.vs/
+x64/
+Debug/
+Release/
+*.user
+*.suo
+*.opensdf
+*.sdf
+*.ipch
+
+# VS Code
+.vscode/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.log
+*.tlog
+
+# SDK Cleanup
+RoN-Internal/SDK_Backup/
+cleanup_sdk.py
+
+# Gems and other temporary files
+tmp/
