@@ -120,6 +120,10 @@ void GameData::Update(SDK::UWorld* World)
                 auto* Item = GS->AllItems[i];
                 if (!Item || Item->bInInventory) continue;
 
+                // Only show weapons dropped by suspects
+                auto* Owner = Item->PreviousOwner;
+                if (!Owner || !Owner->IsA(SDK::ACyberneticsSuspect_V2_C::StaticClass())) continue;
+
                 CachedEntity NewEntity;
                 NewEntity.Actor = Item;
                 NewEntity.Type = EEntityType::DroppedWeapon;
@@ -136,6 +140,7 @@ void GameData::Update(SDK::UWorld* World)
             {
                 auto* RA = GS->AllReportableActors[i];
                 if (!RA) continue;
+                if (!RA->bReportableEnabled) continue;
                 if (RA->bHasBeenReported) continue;
 
                 CachedEntity NewEntity;
