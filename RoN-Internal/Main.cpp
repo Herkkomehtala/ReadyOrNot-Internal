@@ -191,23 +191,51 @@ DWORD MainThread(HMODULE Module)
 
         if (IsKeyPressed(Config::Get().Keys.DumpEntities)) {
             Logger::Log("[*] Dumping Entities...");
-            
+
             std::lock_guard<std::mutex> Lock(GameData::DataMutex);
             for (const auto& Ent : GameData::CachedEntities) {
-                 if (!Ent.Actor) continue;
-                 
-                 std::string Name = Ent.Actor->GetFullName();
-                 SDK::FVector Pos = Ent.Actor->K2_GetActorLocation();
-                 
-                 std::string TypeStr = "Unknown";
-                 switch(Ent.Type) {
-                     case EEntityType::Suspect: TypeStr = "Suspect"; break;
-                     case EEntityType::Civilian: TypeStr = "Civilian"; break;
-                     case EEntityType::Ally: TypeStr = "Ally"; break;
-                     case EEntityType::Trap: TypeStr = "Trap"; break;
-                 }
+                if (!Ent.Actor) continue;
 
-                 Logger::Log("Entity: %s | Type: %s | Pos: (%.0f, %.0f, %.0f)", Name.c_str(), TypeStr.c_str(), Pos.X, Pos.Y, Pos.Z);
+                std::string Name = Ent.Actor->GetFullName();
+                SDK::FVector Pos = Ent.Actor->K2_GetActorLocation();
+
+                std::string TypeStr = "Unknown";
+                switch (Ent.Type) {
+                case EEntityType::Suspect: TypeStr = "Suspect"; break;
+                case EEntityType::Civilian: TypeStr = "Civilian"; break;
+                case EEntityType::Ally: TypeStr = "Ally"; break;
+                case EEntityType::Trap: TypeStr = "Trap"; break;
+                case EEntityType::Evidence: TypeStr = "Evidence"; break;
+                }
+
+                Logger::Log("Entity: %s | Type: %s | Pos: (%.0f, %.0f, %.0f)", Name.c_str(), TypeStr.c_str(), Pos.X, Pos.Y, Pos.Z);
+            }
+
+            Logger::Log("[*] Dumping GameState->AllItems...");
+
+            SDK::UWorld* DumpWorld = SDK::UWorld::GetWorld();
+            if (DumpWorld && DumpWorld->GameState) {
+                auto* GS = static_cast<SDK::AReadyOrNotGameState*>(DumpWorld->GameState);
+
+                Logger::Log("[*] AllItems.Num() = %d", GS->AllItems.Num());
+                for (int i = 0; i < GS->AllItems.Num(); i++) {
+                    auto* Item = GS->AllItems[i];
+                    if (!Item) continue;
+                    SDK::FVector Pos = Item->K2_GetActorLocation();
+                    bool bInInv = Item->bInInventory;
+                    Logger::Log("  [%d] %s | InInventory: %d | Pos: (%.0f, %.0f, %.0f)",
+                        i, Item->GetFullName().c_str(), bInInv, Pos.X, Pos.Y, Pos.Z);
+                }
+
+                Logger::Log("[*] AllEvidenceActors.Num() = %d", GS->AllEvidenceActors.Num());
+                Logger::Log("[*] AllReportableActors.Num() = %d", GS->AllReportableActors.Num());
+                for (int i = 0; i < GS->AllReportableActors.Num(); i++) {
+                    auto* RA = GS->AllReportableActors[i];
+                    if (!RA) continue;
+                    SDK::FVector Pos = RA->K2_GetActorLocation();
+                    Logger::Log("  [Reportable %d] %s | Pos: (%.0f, %.0f, %.0f)",
+                        i, RA->GetFullName().c_str(), Pos.X, Pos.Y, Pos.Z);
+                }
             }
             Logger::Log("[*] Dump Complete.");
             Sleep(500);

@@ -8,7 +8,10 @@ enum class EEntityType {
     Suspect,
     Civilian,
     Ally,
-    Trap
+    Trap,
+    Evidence,
+    DroppedWeapon,
+    Reportable
 };
 
 enum class EEntityStatus {

@@ -34,6 +34,9 @@ Enabled=1
 Box=1
 NameTags=1
 Traps=1
+Evidence=1
+DroppedWeapon=1
+Reportable=1
 BoxThickness=2.0
 # RGBA Floats (0.0 to 1.0)
 ColorSuspect=1.00,0.00,0.00,1.00
@@ -41,6 +44,9 @@ ColorCivilian=0.00,1.00,0.00,1.00
 ColorAlly=0.00,0.50,1.00,1.00
 ColorArrested=1.00,0.50,0.00,1.00
 ColorTrap=1.00,0.00,1.00,1.00
+ColorEvidence=0.00,1.00,1.00,1.00
+ColorDroppedWeapon=1.00,1.00,0.00,1.00
+ColorReportable=1.00,0.50,1.00,1.00
 
 [Keys]
 # Keybindings

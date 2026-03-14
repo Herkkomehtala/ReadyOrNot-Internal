@@ -53,7 +53,10 @@ namespace Config
         InternalSettings.ESP.bBox = GetPrivateProfileIntA("ESP", "Box", 1, Path.c_str());
         InternalSettings.ESP.bNameTags = GetPrivateProfileIntA("ESP", "NameTags", 1, Path.c_str());
         InternalSettings.ESP.bTraps = GetPrivateProfileIntA("ESP", "Traps", 1, Path.c_str());
-        
+        InternalSettings.ESP.bEvidence = GetPrivateProfileIntA("ESP", "Evidence", 1, Path.c_str());
+        InternalSettings.ESP.bDroppedWeapon = GetPrivateProfileIntA("ESP", "DroppedWeapon", 1, Path.c_str());
+        InternalSettings.ESP.bReportable = GetPrivateProfileIntA("ESP", "Reportable", 1, Path.c_str());
+
         char Buffer[32];
         GetPrivateProfileStringA("ESP", "BoxThickness", "2.0", Buffer, 32, Path.c_str());
         InternalSettings.ESP.BoxThickness = std::stof(Buffer);
@@ -64,6 +67,9 @@ namespace Config
         InternalSettings.ESP.ColAlly = ReadColor("ESP", "ColorAlly", { 0.0f, 0.5f, 1.0f, 1.0f }, Path);
         InternalSettings.ESP.ColArrested = ReadColor("ESP", "ColorArrested", { 1.0f, 0.5f, 0.0f, 1.0f }, Path);
         InternalSettings.ESP.ColTrap = ReadColor("ESP", "ColorTrap", { 1.0f, 0.0f, 1.0f, 1.0f }, Path); // Default Purple
+        InternalSettings.ESP.ColEvidence = ReadColor("ESP", "ColorEvidence", { 0.0f, 1.0f, 1.0f, 1.0f }, Path); // Default Cyan
+        InternalSettings.ESP.ColDroppedWeapon = ReadColor("ESP", "ColorDroppedWeapon", { 1.0f, 1.0f, 0.0f, 1.0f }, Path); // Default Yellow
+        InternalSettings.ESP.ColReportable = ReadColor("ESP", "ColorReportable", { 1.0f, 0.5f, 1.0f, 1.0f }, Path); // Default Pink
 
         // Debug
         InternalSettings.Debug.bConsoleEnabled = GetPrivateProfileIntA("Debug", "ConsoleEnabled", 1, Path.c_str());
@@ -89,6 +95,9 @@ namespace Config
         WritePrivateProfileStringA("ESP", "Box", InternalSettings.ESP.bBox ? "1" : "0", Path.c_str());
         WritePrivateProfileStringA("ESP", "NameTags", InternalSettings.ESP.bNameTags ? "1" : "0", Path.c_str());
         WritePrivateProfileStringA("ESP", "Traps", InternalSettings.ESP.bTraps ? "1" : "0", Path.c_str());
+        WritePrivateProfileStringA("ESP", "Evidence", InternalSettings.ESP.bEvidence ? "1" : "0", Path.c_str());
+        WritePrivateProfileStringA("ESP", "DroppedWeapon", InternalSettings.ESP.bDroppedWeapon ? "1" : "0", Path.c_str());
+        WritePrivateProfileStringA("ESP", "Reportable", InternalSettings.ESP.bReportable ? "1" : "0", Path.c_str());
         WritePrivateProfileStringA("ESP", "BoxThickness", std::to_string(InternalSettings.ESP.BoxThickness).c_str(), Path.c_str());
 
         // Colors
@@ -97,6 +106,9 @@ namespace Config
         WriteColor("ESP", "ColorAlly", InternalSettings.ESP.ColAlly, Path);
         WriteColor("ESP", "ColorArrested", InternalSettings.ESP.ColArrested, Path);
         WriteColor("ESP", "ColorTrap", InternalSettings.ESP.ColTrap, Path);
+        WriteColor("ESP", "ColorEvidence", InternalSettings.ESP.ColEvidence, Path);
+        WriteColor("ESP", "ColorDroppedWeapon", InternalSettings.ESP.ColDroppedWeapon, Path);
+        WriteColor("ESP", "ColorReportable", InternalSettings.ESP.ColReportable, Path);
 
         // Debug
         WritePrivateProfileStringA("Debug", "ConsoleEnabled", InternalSettings.Debug.bConsoleEnabled ? "1" : "0", Path.c_str());

@@ -23,12 +23,21 @@ void GameData::Update(SDK::UWorld* World)
         }
     }
 
-    SDK::TArray<SDK::AActor*>& Actors = World->PersistentLevel->Actors;
-    
-    for (int i = 0; i < Actors.Num(); i++)
+    // Iterate ALL levels (PersistentLevel + streaming sub-levels)
+    // Evidence, weapons, etc. are often in sub-levels, not PersistentLevel
+    SDK::TArray<SDK::ULevel*>& Levels = World->Levels;
+
+    for (int lvl = 0; lvl < Levels.Num(); lvl++)
     {
-        SDK::AActor* Actor = Actors[i];
-        if (!Actor || Actor == MyPawn) continue;
+        SDK::ULevel* Level = Levels[lvl];
+        if (!Level) continue;
+
+        SDK::TArray<SDK::AActor*>& Actors = Level->Actors;
+
+        for (int i = 0; i < Actors.Num(); i++)
+        {
+            SDK::AActor* Actor = Actors[i];
+            if (!Actor || Actor == MyPawn) continue;
 
         CachedEntity NewEntity;
         NewEntity.Actor = Actor;
@@ -45,6 +54,15 @@ void GameData::Update(SDK::UWorld* World)
             else
                 NewEntity.Status = EEntityStatus::TrapDisabled;
 
+            LocalBuffer.push_back(NewEntity);
+            continue;
+        }
+
+        // AEvidenceActor (It is not the suspect's dropped weapon.)
+        if (Config::Get().ESP.bEvidence && Actor->IsA(SDK::AEvidenceActor::StaticClass()))
+        {
+            NewEntity.Type = EEntityType::Evidence;
+            NewEntity.Status = EEntityStatus::Active;
             LocalBuffer.push_back(NewEntity);
             continue;
         }
@@ -83,6 +101,52 @@ void GameData::Update(SDK::UWorld* World)
 
             if (NewEntity.Type != EEntityType::Unknown)
             {
+                LocalBuffer.push_back(NewEntity);
+            }
+        }
+        } // end actor loop
+    } // end level loop
+
+    // GameState-based detection: Dropped weapons & Reportable actors
+    if (World->GameState)
+    {
+        auto* GS = static_cast<SDK::AReadyOrNotGameState*>(World->GameState);
+
+        // Dropped suspect weapons: AllItems where bInInventory == false
+        if (Config::Get().ESP.bDroppedWeapon)
+        {
+            for (int i = 0; i < GS->AllItems.Num(); i++)
+            {
+                auto* Item = GS->AllItems[i];
+                if (!Item || Item->bInInventory) continue;
+
+                // Only show weapons dropped by suspects
+                auto* Owner = Item->PreviousOwner;
+                if (!Owner || !Owner->IsA(SDK::ACyberneticsSuspect_V2_C::StaticClass())) continue;
+
+                CachedEntity NewEntity;
+                NewEntity.Actor = Item;
+                NewEntity.Type = EEntityType::DroppedWeapon;
+                NewEntity.Status = EEntityStatus::Active;
+                LocalBuffer.push_back(NewEntity);
+            }
+        }
+
+        // Reportable actors (mission-critical evidence NPCs/objects)
+        // Skip already reported ones (bHasBeenReported at 0x02C1)
+        if (Config::Get().ESP.bReportable)
+        {
+            for (int i = 0; i < GS->AllReportableActors.Num(); i++)
+            {
+                auto* RA = GS->AllReportableActors[i];
+                if (!RA) continue;
+                if (!RA->bReportableEnabled) continue;
+                if (RA->bHasBeenReported) continue;
+
+                CachedEntity NewEntity;
+                NewEntity.Actor = RA;
+                NewEntity.Type = EEntityType::Reportable;
+                NewEntity.Status = EEntityStatus::Active;
                 LocalBuffer.push_back(NewEntity);
             }
         }

@@ -13,13 +13,19 @@ namespace Config
         bool bBox = true;
         bool bNameTags = true;
         bool bTraps = true;
+        bool bEvidence = true;
+        bool bDroppedWeapon = true;
+        bool bReportable = true;
         float BoxThickness = 1.0f;
 
         Color ColSuspect = { 1.0f, 0.0f, 0.0f, 1.0f };
         Color ColCivilian = { 0.0f, 1.0f, 0.0f, 1.0f };
         Color ColAlly = { 0.0f, 0.5f, 1.0f, 1.0f };
         Color ColArrested = { 1.0f, 0.5f, 0.0f, 1.0f };
-        Color ColTrap = { 1.0f, 0.0f, 1.0f, 1.0f }; // Purple default
+        Color ColTrap = { 1.0f, 0.0f, 1.0f, 1.0f };
+        Color ColEvidence = { 0.0f, 1.0f, 1.0f, 1.0f };
+        Color ColDroppedWeapon = { 1.0f, 1.0f, 0.0f, 1.0f };
+        Color ColReportable = { 1.0f, 0.5f, 1.0f, 1.0f };
     };
 
     struct DebugSettings {
@@ -30,7 +36,7 @@ namespace Config
     struct Keybinds {
         int ToggleESP = VK_F1;
         int ReloadConfig = VK_F5;
-        int ToggleOfficial = VK_F6; // New Debug Key
+        int ToggleOfficial = VK_F6;
         int Detach = VK_F11;
         int DumpEntities = VK_F9;
     };

@@ -28,6 +28,9 @@ namespace ESP
             case EEntityType::Civilian: C = Config::Get().ESP.ColCivilian; break;
             case EEntityType::Ally: C = Config::Get().ESP.ColAlly; break;
             case EEntityType::Trap: C = Config::Get().ESP.ColTrap; break;
+            case EEntityType::Evidence: C = Config::Get().ESP.ColEvidence; break;
+            case EEntityType::DroppedWeapon: C = Config::Get().ESP.ColDroppedWeapon; break;
+            case EEntityType::Reportable: C = Config::Get().ESP.ColReportable; break;
         }
         return { C.R, C.G, C.B, C.A };
     }
@@ -35,12 +38,34 @@ namespace ESP
     void DrawEntity(SDK::UCanvas* Canvas, SDK::APlayerController* PC, const CachedEntity& Entity)
     {
         if (!Entity.Actor) return;
-        
-        SDK::FVector Origin = Entity.Actor->K2_GetActorLocation();
+
+        SDK::FVector Origin;
+
+        // DroppedWeapon: use ItemMesh component location (actual physics-simulated position)
+        // instead of Actor location (stale surrender/death position)
+        if (Entity.Type == EEntityType::DroppedWeapon)
+        {
+            auto* Item = static_cast<SDK::ABaseItem*>(Entity.Actor);
+            if (Item->ItemMesh)
+            {
+                Origin = Item->ItemMesh->K2_GetComponentLocation();
+            }
+            else
+            {
+                Origin = Entity.Actor->K2_GetActorLocation();
+            }
+        }
+        else
+        {
+            Origin = Entity.Actor->K2_GetActorLocation();
+        }
         
         // 2D Box Logic goes here. Not sure if there's a better way to do this
-        float BoxHeightHalf = 90.0f; 
+        float BoxHeightHalf = 90.0f;
         if (Entity.Type == EEntityType::Trap) BoxHeightHalf = 25.0f;
+        if (Entity.Type == EEntityType::Evidence) BoxHeightHalf = 15.0f;
+        if (Entity.Type == EEntityType::DroppedWeapon) BoxHeightHalf = 15.0f;
+        if (Entity.Type == EEntityType::Reportable) BoxHeightHalf = 30.0f;
 
         SDK::FVector HeadPos = Origin; HeadPos.Z += BoxHeightHalf; 
         SDK::FVector FeetPos = Origin; FeetPos.Z -= BoxHeightHalf;
@@ -50,10 +75,22 @@ namespace ESP
         if (Renderer::WorldToScreen(PC, HeadPos, HeadScreen) && 
             Renderer::WorldToScreen(PC, FeetPos, FeetScreen))
         {
-            float Height = FeetScreen.Y - HeadScreen.Y;
-            float Width = Height * 0.5f;
-            float X = HeadScreen.X - (Width * 0.5f);
-            float Y = HeadScreen.Y;
+            float Height, Width, X, Y;
+
+            Height = FeetScreen.Y - HeadScreen.Y;
+
+            if (Entity.Type == EEntityType::Evidence || Entity.Type == EEntityType::DroppedWeapon || Entity.Type == EEntityType::Reportable)
+            {
+                Width = Height;
+                X = HeadScreen.X - (Width);
+                Y = HeadScreen.Y;
+            }
+            else
+            {
+                Width = Height * 0.5f;
+                X = HeadScreen.X - (Width * 0.5f);
+                Y = HeadScreen.Y;
+            }
 
             SDK::FLinearColor Color = GetColorFromType(Entity.Type, Entity.Status);
 
