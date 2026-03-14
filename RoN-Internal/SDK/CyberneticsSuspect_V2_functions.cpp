@@ -17,20 +17,6 @@
 namespace SDK
 {
 
-// Function CyberneticsSuspect_V2.CyberneticsSuspect_V2_C.ReceiveBeginPlay
-// (Event, Protected, BlueprintEvent)
-
-void ACyberneticsSuspect_V2_C::ReceiveBeginPlay()
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("CyberneticsSuspect_V2_C", "ReceiveBeginPlay");
-
-	UObject::ProcessEvent(Func, nullptr);
-}
-
-
 // Function CyberneticsSuspect_V2.CyberneticsSuspect_V2_C.ExecuteUbergraph_CyberneticsSuspect_V2
 // (Final, UbergraphFunction)
 // Parameters:
@@ -48,6 +34,20 @@ void ACyberneticsSuspect_V2_C::ExecuteUbergraph_CyberneticsSuspect_V2(int32 Entr
 	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function CyberneticsSuspect_V2.CyberneticsSuspect_V2_C.ReceiveBeginPlay
+// (Event, Protected, BlueprintEvent)
+
+void ACyberneticsSuspect_V2_C::ReceiveBeginPlay()
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("CyberneticsSuspect_V2_C", "ReceiveBeginPlay");
+
+	UObject::ProcessEvent(Func, nullptr);
 }
 
 }
