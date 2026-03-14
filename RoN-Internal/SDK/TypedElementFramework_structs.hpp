@@ -16,15 +16,6 @@
 namespace SDK
 {
 
-// ScriptStruct TypedElementFramework.TypedElementWidgetConstructor
-// 0x0010 (0x0010 - 0x0000)
-struct alignas(0x08) FTypedElementWidgetConstructor final
-{
-public:
-	uint8                                         Pad_0[0x10];                                       // 0x0000(0x0010)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FTypedElementWidgetConstructor;
-
 // ScriptStruct TypedElementFramework.TypedElementDataStorageColumn
 // 0x0000 (0x0000 - 0x0000)
 #pragma pack(push, 0x1)
@@ -34,14 +25,14 @@ struct alignas(0x01) FTypedElementDataStorageColumn
 #pragma pack(pop)
 DUMPER7_ASSERTS_FTypedElementDataStorageColumn;
 
-// ScriptStruct TypedElementFramework.TypedElementI32IntValueCacheColumn
-// 0x0004 (0x0004 - 0x0000)
-struct FTypedElementI32IntValueCacheColumn final : public FTypedElementDataStorageColumn
+// ScriptStruct TypedElementFramework.TypedElementLabelColumn
+// 0x0010 (0x0010 - 0x0000)
+struct FTypedElementLabelColumn final : public FTypedElementDataStorageColumn
 {
 public:
-	int32                                         Value;                                             // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class FString                                 Label;                                             // 0x0000(0x0010)(ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FTypedElementI32IntValueCacheColumn;
+DUMPER7_ASSERTS_FTypedElementLabelColumn;
 
 // ScriptStruct TypedElementFramework.ScriptTypedElementHandle
 // 0x0008 (0x0008 - 0x0000)
@@ -79,14 +70,14 @@ public:
 };
 DUMPER7_ASSERTS_FTypedElementDataStorageTag;
 
-// ScriptStruct TypedElementFramework.TypedElementLabelColumn
+// ScriptStruct TypedElementFramework.TypedElementWidgetConstructor
 // 0x0010 (0x0010 - 0x0000)
-struct FTypedElementLabelColumn final : public FTypedElementDataStorageColumn
+struct alignas(0x08) FTypedElementWidgetConstructor final
 {
 public:
-	class FString                                 Label;                                             // 0x0000(0x0010)(ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_0[0x10];                                       // 0x0000(0x0010)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
-DUMPER7_ASSERTS_FTypedElementLabelColumn;
+DUMPER7_ASSERTS_FTypedElementWidgetConstructor;
 
 // ScriptStruct TypedElementFramework.TypedElementLabelHashColumn
 // 0x0008 (0x0008 - 0x0000)
@@ -207,6 +198,15 @@ public:
 	uint32                                        Value;                                             // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_FTypedElementU32IntValueCacheColumn;
+
+// ScriptStruct TypedElementFramework.TypedElementI32IntValueCacheColumn
+// 0x0004 (0x0004 - 0x0000)
+struct FTypedElementI32IntValueCacheColumn final : public FTypedElementDataStorageColumn
+{
+public:
+	int32                                         Value;                                             // 0x0000(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FTypedElementI32IntValueCacheColumn;
 
 // ScriptStruct TypedElementFramework.TypedElementU64IntValueCacheColumn
 // 0x0008 (0x0008 - 0x0000)

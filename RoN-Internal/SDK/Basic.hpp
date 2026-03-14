@@ -35,11 +35,11 @@ using namespace UC;
 */
 namespace Offsets
 {
-	constexpr int32 GObjects          = 0x08A4D430;
-	constexpr int32 AppendString      = 0x00C8E8D0;
-	constexpr int32 GNames            = 0x0894BB88;
-	constexpr int32 GWorld            = 0x08BB9FC8;
-	constexpr int32 ProcessEvent      = 0x00E47830;
+	constexpr int32 GObjects          = 0x08CC7470;
+	constexpr int32 AppendString      = 0x00C92470;
+	constexpr int32 GNames            = 0x08BC5BB8;
+	constexpr int32 GWorld            = 0x08E35788;
+	constexpr int32 ProcessEvent      = 0x00E4D630;
 	constexpr int32 ProcessEventIdx   = 0x0000004D;
 }
 
@@ -457,6 +457,17 @@ public:
 		return ClassPtr != Other;
 	}
 };
+
+// Predefined struct FStructBaseChain
+// 0x0010 (0x0010 - 0x0000)
+struct FStructBaseChain
+{
+public:
+	FStructBaseChain**                            StructBaseChainArray;                              // 0x0000(0x0008)(NOT AUTO-GENERATED PROPERTY)
+	int32                                         NumStructBasesInChainMinusOne;                     // 0x0008(0x0004)(NOT AUTO-GENERATED PROPERTY)
+};
+DUMPER7_ASSERTS_FStructBaseChain;
+
 namespace FTextImpl
 {
 // Predefined struct FTextData

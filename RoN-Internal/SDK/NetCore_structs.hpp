@@ -171,15 +171,15 @@ public:
 DUMPER7_ASSERTS_FFastArraySerializerItem;
 
 // ScriptStruct NetCore.FastArraySerializer
-// 0x0108 (0x0108 - 0x0000)
+// 0x0110 (0x0110 - 0x0000)
 struct alignas(0x08) FFastArraySerializer
 {
 public:
 	uint8                                         Pad_0[0x54];                                       // 0x0000(0x0054)(Fixing Size After Last Property [ Dumper-7 ])
 	int32                                         ArrayReplicationKey;                               // 0x0054(0x0004)(ZeroConstructor, IsPlainOldData, RepSkip, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_58[0xA8];                                      // 0x0058(0x00A8)(Fixing Size After Last Property [ Dumper-7 ])
-	EFastArraySerializerDeltaFlags                DeltaFlags;                                        // 0x0100(0x0001)(ZeroConstructor, Transient, IsPlainOldData, RepSkip, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
-	uint8                                         Pad_101[0x7];                                      // 0x0101(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
+	uint8                                         Pad_58[0xB4];                                      // 0x0058(0x00B4)(Fixing Size After Last Property [ Dumper-7 ])
+	EFastArraySerializerDeltaFlags                DeltaFlags;                                        // 0x010C(0x0001)(ZeroConstructor, Transient, IsPlainOldData, RepSkip, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
+	uint8                                         Pad_10D[0x3];                                      // 0x010D(0x0003)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
 DUMPER7_ASSERTS_FFastArraySerializer;
 

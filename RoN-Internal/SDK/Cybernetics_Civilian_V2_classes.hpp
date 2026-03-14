@@ -18,16 +18,16 @@ namespace SDK
 {
 
 // BlueprintGeneratedClass Cybernetics_Civilian_V2.Cybernetics_Civilian_V2_C
-// 0x0010 (0x27F0 - 0x27E0)
+// 0x0010 (0x28A0 - 0x2890)
 class ACybernetics_Civilian_V2_C final : public ACivilianCharacter
 {
 public:
-	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x27E0(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
-	class FName                                   In_Bone_Name;                                      // 0x27E8(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	struct FPointerToUberGraphFrame               UberGraphFrame;                                    // 0x2890(0x0008)(ZeroConstructor, Transient, DuplicateTransient)
+	class FName                                   In_Bone_Name;                                      // 0x2898(0x0008)(Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ReceiveBeginPlay();
 	void ExecuteUbergraph_Cybernetics_Civilian_V2(int32 EntryPoint);
+	void ReceiveBeginPlay();
 
 public:
 	static class UClass* StaticClass()
