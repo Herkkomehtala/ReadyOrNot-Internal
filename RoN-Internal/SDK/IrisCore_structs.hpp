@@ -66,26 +66,22 @@ public:
 };
 DUMPER7_ASSERTS_FNetSerializerConfig;
 
-// ScriptStruct IrisCore.UnitQuatNetSerializerConfig
-// 0x0000 (0x0010 - 0x0010)
-struct FUnitQuatNetSerializerConfig final : public FNetSerializerConfig
-{
-};
-DUMPER7_ASSERTS_FUnitQuatNetSerializerConfig;
-
-// ScriptStruct IrisCore.StringNetSerializerConfig
-// 0x0000 (0x0010 - 0x0010)
-struct FStringNetSerializerConfig final : public FNetSerializerConfig
-{
-};
-DUMPER7_ASSERTS_FStringNetSerializerConfig;
-
 // ScriptStruct IrisCore.DateTimeNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
 struct FDateTimeNetSerializerConfig final : public FNetSerializerConfig
 {
 };
 DUMPER7_ASSERTS_FDateTimeNetSerializerConfig;
+
+// ScriptStruct IrisCore.UintNetSerializerConfig
+// 0x0008 (0x0018 - 0x0010)
+struct FUintNetSerializerConfig final : public FNetSerializerConfig
+{
+public:
+	uint8                                         BitCount;                                          // 0x0010(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_11[0x7];                                       // 0x0011(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FUintNetSerializerConfig;
 
 // ScriptStruct IrisCore.EnumInt8NetSerializerConfig
 // 0x0010 (0x0020 - 0x0010)
@@ -111,6 +107,13 @@ public:
 };
 DUMPER7_ASSERTS_FEnumInt16NetSerializerConfig;
 
+// ScriptStruct IrisCore.RotatorAsShortNetSerializerConfig
+// 0x0000 (0x0010 - 0x0010)
+struct FRotatorAsShortNetSerializerConfig final : public FNetSerializerConfig
+{
+};
+DUMPER7_ASSERTS_FRotatorAsShortNetSerializerConfig;
+
 // ScriptStruct IrisCore.EnumInt32NetSerializerConfig
 // 0x0018 (0x0028 - 0x0010)
 struct FEnumInt32NetSerializerConfig final : public FNetSerializerConfig
@@ -122,18 +125,6 @@ public:
 	uint8                                         Pad_19[0xF];                                       // 0x0019(0x000F)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
 DUMPER7_ASSERTS_FEnumInt32NetSerializerConfig;
-
-// ScriptStruct IrisCore.Uint32RangeNetSerializerConfig
-// 0x0010 (0x0020 - 0x0010)
-struct FUint32RangeNetSerializerConfig final : public FNetSerializerConfig
-{
-public:
-	uint32                                        LowerBound;                                        // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint32                                        UpperBound;                                        // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         BitCount;                                          // 0x0018(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_19[0x7];                                       // 0x0019(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FUint32RangeNetSerializerConfig;
 
 // ScriptStruct IrisCore.EnumInt64NetSerializerConfig
 // 0x0020 (0x0030 - 0x0010)
@@ -158,13 +149,6 @@ public:
 	uint8                                         Pad_13[0xD];                                       // 0x0013(0x000D)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
 DUMPER7_ASSERTS_FEnumUint8NetSerializerConfig;
-
-// ScriptStruct IrisCore.SoftClassPathNetSerializerConfig
-// 0x0000 (0x0010 - 0x0010)
-struct FSoftClassPathNetSerializerConfig final : public FNetSerializerConfig
-{
-};
-DUMPER7_ASSERTS_FSoftClassPathNetSerializerConfig;
 
 // ScriptStruct IrisCore.EnumUint16NetSerializerConfig
 // 0x0010 (0x0020 - 0x0010)
@@ -216,12 +200,31 @@ struct FDoubleNetSerializerConfig final : public FNetSerializerConfig
 };
 DUMPER7_ASSERTS_FDoubleNetSerializerConfig;
 
+// ScriptStruct IrisCore.Uint16RangeNetSerializerConfig
+// 0x0008 (0x0018 - 0x0010)
+struct FUint16RangeNetSerializerConfig final : public FNetSerializerConfig
+{
+public:
+	uint16                                        LowerBound;                                        // 0x0010(0x0002)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint16                                        UpperBound;                                        // 0x0012(0x0002)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         BitCount;                                          // 0x0014(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_15[0x3];                                       // 0x0015(0x0003)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FUint16RangeNetSerializerConfig;
+
 // ScriptStruct IrisCore.GuidNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
 struct FGuidNetSerializerConfig final : public FNetSerializerConfig
 {
 };
 DUMPER7_ASSERTS_FGuidNetSerializerConfig;
+
+// ScriptStruct IrisCore.BoolNetSerializerConfig
+// 0x0000 (0x0010 - 0x0010)
+struct FBoolNetSerializerConfig final : public FNetSerializerConfig
+{
+};
+DUMPER7_ASSERTS_FBoolNetSerializerConfig;
 
 // ScriptStruct IrisCore.BitfieldNetSerializerConfig
 // 0x0008 (0x0018 - 0x0010)
@@ -246,6 +249,18 @@ public:
 };
 DUMPER7_ASSERTS_FArrayPropertyNetSerializerConfig;
 
+// ScriptStruct IrisCore.Int32RangeNetSerializerConfig
+// 0x0010 (0x0020 - 0x0010)
+struct FInt32RangeNetSerializerConfig final : public FNetSerializerConfig
+{
+public:
+	int32                                         LowerBound;                                        // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	int32                                         UpperBound;                                        // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         BitCount;                                          // 0x0018(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_19[0x7];                                       // 0x0019(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_FInt32RangeNetSerializerConfig;
+
 // ScriptStruct IrisCore.LastResortPropertyNetSerializerConfig
 // 0x0028 (0x0038 - 0x0010)
 struct FLastResortPropertyNetSerializerConfig final : public FNetSerializerConfig
@@ -256,13 +271,6 @@ public:
 	uint8                                         Pad_34[0x4];                                       // 0x0034(0x0004)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
 DUMPER7_ASSERTS_FLastResortPropertyNetSerializerConfig;
-
-// ScriptStruct IrisCore.ObjectNetSerializerConfig
-// 0x0000 (0x0010 - 0x0010)
-struct FObjectNetSerializerConfig final : public FNetSerializerConfig
-{
-};
-DUMPER7_ASSERTS_FObjectNetSerializerConfig;
 
 // ScriptStruct IrisCore.NetRoleNetSerializerConfig
 // 0x0018 (0x0028 - 0x0010)
@@ -289,15 +297,6 @@ public:
 };
 DUMPER7_ASSERTS_FFieldPathNetSerializerConfig;
 
-// ScriptStruct IrisCore.NetBlobHandlerDefinition
-// 0x0008 (0x0008 - 0x0000)
-struct FNetBlobHandlerDefinition final
-{
-public:
-	class FName                                   ClassName;                                         // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-};
-DUMPER7_ASSERTS_FNetBlobHandlerDefinition;
-
 // ScriptStruct IrisCore.FieldPathNetSerializerSerializationHelper
 // 0x0018 (0x0018 - 0x0000)
 struct FFieldPathNetSerializerSerializationHelper final
@@ -307,6 +306,17 @@ public:
 	TArray<class FName>                           PropertyPath;                                      // 0x0008(0x0010)(ZeroConstructor, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_FFieldPathNetSerializerSerializationHelper;
+
+// ScriptStruct IrisCore.NetObjectFilterDefinition
+// 0x0018 (0x0018 - 0x0000)
+struct FNetObjectFilterDefinition final
+{
+public:
+	class FName                                   FilterName;                                        // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class FName                                   ClassName;                                         // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class FName                                   ConfigClassName;                                   // 0x0010(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_FNetObjectFilterDefinition;
 
 // ScriptStruct IrisCore.IntNetSerializerConfig
 // 0x0008 (0x0018 - 0x0010)
@@ -342,27 +352,6 @@ public:
 };
 DUMPER7_ASSERTS_FInt16RangeNetSerializerConfig;
 
-// ScriptStruct IrisCore.StructNetSerializerConfig
-// 0x0008 (0x0018 - 0x0010)
-struct FStructNetSerializerConfig final : public FNetSerializerConfig
-{
-public:
-	uint8                                         Pad_10[0x8];                                       // 0x0010(0x0008)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FStructNetSerializerConfig;
-
-// ScriptStruct IrisCore.Int32RangeNetSerializerConfig
-// 0x0010 (0x0020 - 0x0010)
-struct FInt32RangeNetSerializerConfig final : public FNetSerializerConfig
-{
-public:
-	int32                                         LowerBound;                                        // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	int32                                         UpperBound;                                        // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         BitCount;                                          // 0x0018(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_19[0x7];                                       // 0x0019(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
-};
-DUMPER7_ASSERTS_FInt32RangeNetSerializerConfig;
-
 // ScriptStruct IrisCore.Int64RangeNetSerializerConfig
 // 0x0018 (0x0028 - 0x0010)
 struct FInt64RangeNetSerializerConfig final : public FNetSerializerConfig
@@ -386,16 +375,14 @@ public:
 };
 DUMPER7_ASSERTS_FIrisFastArraySerializer;
 
-// ScriptStruct IrisCore.NetObjectFilterDefinition
-// 0x0018 (0x0018 - 0x0000)
-struct FNetObjectFilterDefinition final
+// ScriptStruct IrisCore.NetBlobHandlerDefinition
+// 0x0008 (0x0008 - 0x0000)
+struct FNetBlobHandlerDefinition final
 {
 public:
-	class FName                                   FilterName;                                        // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	class FName                                   ClassName;                                         // 0x0008(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	class FName                                   ConfigClassName;                                   // 0x0010(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class FName                                   ClassName;                                         // 0x0000(0x0008)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
-DUMPER7_ASSERTS_FNetObjectFilterDefinition;
+DUMPER7_ASSERTS_FNetBlobHandlerDefinition;
 
 // ScriptStruct IrisCore.NetObjectPrioritizerDefinition
 // 0x0028 (0x0028 - 0x0000)
@@ -410,12 +397,14 @@ public:
 };
 DUMPER7_ASSERTS_FNetObjectPrioritizerDefinition;
 
-// ScriptStruct IrisCore.BoolNetSerializerConfig
-// 0x0000 (0x0010 - 0x0010)
-struct FBoolNetSerializerConfig final : public FNetSerializerConfig
+// ScriptStruct IrisCore.StructNetSerializerConfig
+// 0x0008 (0x0018 - 0x0010)
+struct FStructNetSerializerConfig final : public FNetSerializerConfig
 {
+public:
+	uint8                                         Pad_10[0x8];                                       // 0x0010(0x0008)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
-DUMPER7_ASSERTS_FBoolNetSerializerConfig;
+DUMPER7_ASSERTS_FStructNetSerializerConfig;
 
 // ScriptStruct IrisCore.NopNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
@@ -423,6 +412,13 @@ struct FNopNetSerializerConfig final : public FNetSerializerConfig
 {
 };
 DUMPER7_ASSERTS_FNopNetSerializerConfig;
+
+// ScriptStruct IrisCore.ObjectNetSerializerConfig
+// 0x0000 (0x0010 - 0x0010)
+struct FObjectNetSerializerConfig final : public FNetSerializerConfig
+{
+};
+DUMPER7_ASSERTS_FObjectNetSerializerConfig;
 
 // ScriptStruct IrisCore.WeakObjectNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
@@ -557,6 +553,13 @@ struct FPolymorphicArrayStructNetSerializerConfig : public FPolymorphicStructNet
 };
 DUMPER7_ASSERTS_FPolymorphicArrayStructNetSerializerConfig;
 
+// ScriptStruct IrisCore.UnitQuatNetSerializerConfig
+// 0x0000 (0x0010 - 0x0010)
+struct FUnitQuatNetSerializerConfig final : public FNetSerializerConfig
+{
+};
+DUMPER7_ASSERTS_FUnitQuatNetSerializerConfig;
+
 // ScriptStruct IrisCore.UnitQuat4fNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
 struct FUnitQuat4fNetSerializerConfig final : public FNetSerializerConfig
@@ -585,13 +588,6 @@ struct FRotatorAsByteNetSerializerConfig final : public FNetSerializerConfig
 };
 DUMPER7_ASSERTS_FRotatorAsByteNetSerializerConfig;
 
-// ScriptStruct IrisCore.RotatorAsShortNetSerializerConfig
-// 0x0000 (0x0010 - 0x0010)
-struct FRotatorAsShortNetSerializerConfig final : public FNetSerializerConfig
-{
-};
-DUMPER7_ASSERTS_FRotatorAsShortNetSerializerConfig;
-
 // ScriptStruct IrisCore.SoftObjectNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
 struct FSoftObjectNetSerializerConfig final : public FNetSerializerConfig
@@ -606,6 +602,13 @@ struct FSoftObjectPathNetSerializerConfig final : public FNetSerializerConfig
 };
 DUMPER7_ASSERTS_FSoftObjectPathNetSerializerConfig;
 
+// ScriptStruct IrisCore.SoftClassPathNetSerializerConfig
+// 0x0000 (0x0010 - 0x0010)
+struct FSoftClassPathNetSerializerConfig final : public FNetSerializerConfig
+{
+};
+DUMPER7_ASSERTS_FSoftClassPathNetSerializerConfig;
+
 // ScriptStruct IrisCore.NameNetSerializerConfig
 // 0x0000 (0x0010 - 0x0010)
 struct FNameNetSerializerConfig final : public FNetSerializerConfig
@@ -613,15 +616,12 @@ struct FNameNetSerializerConfig final : public FNetSerializerConfig
 };
 DUMPER7_ASSERTS_FNameNetSerializerConfig;
 
-// ScriptStruct IrisCore.UintNetSerializerConfig
-// 0x0008 (0x0018 - 0x0010)
-struct FUintNetSerializerConfig final : public FNetSerializerConfig
+// ScriptStruct IrisCore.StringNetSerializerConfig
+// 0x0000 (0x0010 - 0x0010)
+struct FStringNetSerializerConfig final : public FNetSerializerConfig
 {
-public:
-	uint8                                         BitCount;                                          // 0x0010(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_11[0x7];                                       // 0x0011(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
-DUMPER7_ASSERTS_FUintNetSerializerConfig;
+DUMPER7_ASSERTS_FStringNetSerializerConfig;
 
 // ScriptStruct IrisCore.Uint8RangeNetSerializerConfig
 // 0x0008 (0x0018 - 0x0010)
@@ -635,17 +635,17 @@ public:
 };
 DUMPER7_ASSERTS_FUint8RangeNetSerializerConfig;
 
-// ScriptStruct IrisCore.Uint16RangeNetSerializerConfig
-// 0x0008 (0x0018 - 0x0010)
-struct FUint16RangeNetSerializerConfig final : public FNetSerializerConfig
+// ScriptStruct IrisCore.Uint32RangeNetSerializerConfig
+// 0x0010 (0x0020 - 0x0010)
+struct FUint32RangeNetSerializerConfig final : public FNetSerializerConfig
 {
 public:
-	uint16                                        LowerBound;                                        // 0x0010(0x0002)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint16                                        UpperBound;                                        // 0x0012(0x0002)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         BitCount;                                          // 0x0014(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	uint8                                         Pad_15[0x3];                                       // 0x0015(0x0003)(Fixing Struct Size After Last Property [ Dumper-7 ])
+	uint32                                        LowerBound;                                        // 0x0010(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint32                                        UpperBound;                                        // 0x0014(0x0004)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         BitCount;                                          // 0x0018(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_19[0x7];                                       // 0x0019(0x0007)(Fixing Struct Size After Last Property [ Dumper-7 ])
 };
-DUMPER7_ASSERTS_FUint16RangeNetSerializerConfig;
+DUMPER7_ASSERTS_FUint32RangeNetSerializerConfig;
 
 // ScriptStruct IrisCore.Uint64RangeNetSerializerConfig
 // 0x0018 (0x0028 - 0x0010)

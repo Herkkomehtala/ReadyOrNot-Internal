@@ -2271,8 +2271,8 @@ public:
 	void Multicast_OnGameEnded();
 	void Multicast_OnGameStarted();
 	void Multicast_OnRoundReset();
-	void Multicast_PlaySequence(class ULevelSequence* Sequence);
-	void Multicast_StopSequence(class ULevelSequence* Sequence);
+	void Multicast_PlaySequence(class ALevelSequenceActor* SequenceActor);
+	void Multicast_StopSequence(class ALevelSequenceActor* SequenceActor);
 	void OnAlphaAccessChecked(bool bBanned, const class FString& BanReason);
 	void OnAuthenticationResponse(bool bSuccess, bool bSerialFound, bool bSerialValid, const class FString& failedReason);
 	void OnLoadoutFinished();
@@ -5178,7 +5178,7 @@ DUMPER7_ASSERTS_UAIData;
 
 // Class ReadyOrNot.AIFactionManager
 // 0x0058 (0x02F8 - 0x02A0)
-class AAIFactionManager final : public AActor
+class AAIFactionManager : public AActor
 {
 public:
 	uint8                                         bGroupIntoTeams : 1;                               // 0x02A0(0x0001)(BitIndex: 0x00, PropSize: 0x0001 (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected))
@@ -8356,7 +8356,7 @@ public:
 	void SetActiveLoadout(const struct FSavedLoadout& Loadout);
 	void SetActiveLoadoutByName(const class FString& LoadoutName);
 	void SetActiveLongTactical(TSubclassOf<class ABaseItem> LongTactical);
-	void SetActiveNvgStyle(ENVGStyle NvgStyle);
+	void SetActiveNvgStyle(ENVGStyle NVGStyle);
 	void SetActivePrimary(TSubclassOf<class ABaseWeapon> Primary);
 	void SetActivePrimarySkin(TSubclassOf<class USkinComponent> Skin);
 	void SetActiveSecondary(TSubclassOf<class ABaseWeapon> Secondary);
@@ -8493,7 +8493,7 @@ DUMPER7_ASSERTS_UAnimNotify_NextMag;
 
 // Class ReadyOrNot.WallHoleTraversal
 // 0x0270 (0x0510 - 0x02A0)
-class AWallHoleTraversal : public AActor
+class AWallHoleTraversal final : public AActor
 {
 public:
 	class USceneComponent*                        SceneComponent;                                    // 0x02A0(0x0008)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, EditConst, InstancedReference, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
@@ -13530,7 +13530,7 @@ public:
 	class FName                                   NVGGlobalParameterName;                            // 0x1C00(0x0008)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	TSubclassOf<class UUserWidget>                NightVisionFirstPersonWidget;                      // 0x1C08(0x0008)(Edit, ZeroConstructor, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	float                                         FirstPersonCameraOffset;                           // 0x1C10(0x0004)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	ENVGStyle                                     NvgStyle;                                          // 0x1C14(0x0001)(Edit, ZeroConstructor, DisableEditOnTemplate, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	ENVGStyle                                     NVGStyle;                                          // 0x1C14(0x0001)(Edit, ZeroConstructor, DisableEditOnTemplate, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	uint8                                         Pad_1C15[0xB];                                     // 0x1C15(0x000B)(Fixing Size After Last Property [ Dumper-7 ])
 	struct FPostProcessSettings                   NightVisionPostProcess;                            // 0x1C20(0x06E0)(Edit, DisableEditOnInstance, NativeAccessSpecifierPublic)
 	bool                                          bNVGOn;                                            // 0x2300(0x0001)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
@@ -15547,6 +15547,7 @@ public:
 	class APlayerStart* FindPlayerStartForTeam(ETeamType Team);
 	void ForceSoftFailure();
 	void FriendlyAIKilled(class AReadyOrNotCharacter* InstigatorCharacter, class AReadyOrNotCharacter* KilledCharacter);
+	bool HasMissionTag(const struct FGameplayTag& InTag);
 	void IncapHumanKilled(class AReadyOrNotCharacter* InstigatorCharacter, class AIncapacitatedHuman* KilledHuman);
 	void MissionEnd(bool bSuccess);
 	void Personnel_SpawnHighground(int32 PersonnelNum, int32 MapPointNum, bool bSpotter, bool bMarksman, bool bSniper);
@@ -18298,7 +18299,7 @@ DUMPER7_ASSERTS_UFallInAction;
 
 // Class ReadyOrNot.CoverLandmarkProxy
 // 0x0018 (0x02B8 - 0x02A0)
-class ACoverLandmarkProxy : public AActor
+class ACoverLandmarkProxy final : public AActor
 {
 public:
 	class ACoverLandmark*                         LandmarkOwner;                                     // 0x02A0(0x0008)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
@@ -19125,7 +19126,7 @@ public:
 	class FName                                   ActivationProxyAttachmentBone;                     // 0x0CE8(0x0008)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	class FName                                   DisarmProxyAttachmentBone;                         // 0x0CF0(0x0008)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	bool                                          bDisarmed;                                         // 0x0CF8(0x0001)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
-	bool                                          bDetonated;                                        // 0x0CF9(0x0001)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                          bDetonated;                                        // 0x0CF9(0x0001)(BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	bool                                          bHasJammerActivated;                               // 0x0CFA(0x0001)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	bool                                          bJammerActive;                                     // 0x0CFB(0x0001)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, IsPlainOldData, RepNotify, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	uint8                                         Pad_CFC[0x4];                                      // 0x0CFC(0x0004)(Fixing Size After Last Property [ Dumper-7 ])
@@ -25189,7 +25190,7 @@ DUMPER7_ASSERTS_UCacheRetrievalPoint;
 
 // Class ReadyOrNot.ItemCacheActor
 // 0x0070 (0x0310 - 0x02A0)
-class AItemCacheActor : public AActor
+class AItemCacheActor final : public AActor
 {
 public:
 	uint8                                         Pad_2A0[0x20];                                     // 0x02A0(0x0020)(Fixing Size After Last Property [ Dumper-7 ])
@@ -26375,7 +26376,7 @@ public:
 	void SetItem(EItemType ItemType, TSubclassOf<class ABaseItem> ItemClass);
 	void SetLockInput(bool bShouldLockInput);
 	void SetLongTactical(TSubclassOf<class ABaseItem> LongTactical);
-	void SetNvgStyle(ENVGStyle NvgStyle);
+	void SetNvgStyle(ENVGStyle NVGStyle);
 	void SetPrimaryWeapon(const struct FWeaponData& WeaponData);
 	void SetSecondaryWeapon(const struct FWeaponData& WeaponData);
 	void SetWorkbenchItemClass(TSubclassOf<class ABaseItem> Item, class FName Tag, const struct FSavedLoadout& Loadout);
@@ -28257,7 +28258,7 @@ DUMPER7_ASSERTS_UNavSplinePathRenderingComponent;
 
 // Class ReadyOrNot.NeutralizeSuspectByTag
 // 0x0018 (0x0348 - 0x0330)
-class ANeutralizeSuspectByTag final : public AObjective
+class ANeutralizeSuspectByTag : public AObjective
 {
 public:
 	class ACyberneticCharacter*                   suspect;                                           // 0x0330(0x0008)(ZeroConstructor, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
@@ -28983,7 +28984,7 @@ DUMPER7_ASSERTS_APepperGasCloud;
 
 // Class ReadyOrNot.PepperProjectile
 // 0x0008 (0x0440 - 0x0438)
-class APepperProjectile final : public ABulletProjectile
+class APepperProjectile : public ABulletProjectile
 {
 public:
 	class UParticleSystem*                        GasEffect;                                         // 0x0438(0x0008)(Edit, BlueprintVisible, ZeroConstructor, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
@@ -32732,6 +32733,7 @@ public:
 	void AddReplayEvent(EReplayEventType EventType, const struct FVector& Location, float Timestamp, const class FString& AdditionalInformation);
 	void ApplyDecalSettings();
 	void ApplyDeckPreset();
+	void ApplyPreset(int32 PresetIndex);
 	void BuildMapList();
 	bool CanChangeMutedState(const class FString& UniqueNetId);
 	void CommanderCompleteMission(const class FString& Mission);
@@ -32760,6 +32762,7 @@ public:
 	TArray<struct FReplayEvent> GetReplayEvents();
 	class FString GetSessionTicket();
 	void Gratr();
+	bool IsCustomPreset();
 	bool IsNetworkCompatible(const uint32 LocalNetworkVersion, const uint32 RemoteNetworkVersion);
 	bool IsPlayingReplay();
 	bool IsPublicMissionInProgress();
@@ -33050,6 +33053,7 @@ public:
 	uint8                                         Pad_40C[0x4];                                      // 0x040C(0x0004)(Fixing Struct Size After Last Property [ Dumper-7 ])
 
 public:
+	void ApplyGraphicsPreset();
 	void ApplySteamDeckProfile();
 	void ResetAccessibilityOptions();
 	void ResetAudioOptions();
@@ -35887,7 +35891,7 @@ DUMPER7_ASSERTS_IReportable;
 
 // Class ReadyOrNot.ReportableActor
 // 0x00E8 (0x0388 - 0x02A0)
-class AReportableActor : public AActor
+class AReportableActor final : public AActor
 {
 public:
 	uint8                                         Pad_2A0[0x20];                                     // 0x02A0(0x0020)(Fixing Size After Last Property [ Dumper-7 ])
@@ -35941,7 +35945,7 @@ DUMPER7_ASSERTS_AReportableActor;
 
 // Class ReadyOrNot.ReportReportableByTag
 // 0x0010 (0x0340 - 0x0330)
-class AReportReportableByTag : public AObjective
+class AReportReportableByTag final : public AObjective
 {
 public:
 	uint32                                        NumReportsToComplete;                              // 0x0330(0x0004)(Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
@@ -39440,7 +39444,7 @@ public:
 DUMPER7_ASSERTS_USubtitlesWidget;
 
 // Class ReadyOrNot.SwatCommandWidget
-// 0x05E8 (0x08B0 - 0x02C8)
+// 0x05F0 (0x08B8 - 0x02C8)
 class USwatCommandWidget : public UUserWidget
 {
 public:
@@ -39502,7 +39506,7 @@ public:
 	struct FLinearColor                           RedTeamColor;                                      // 0x07E8(0x0010)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
 	struct FLinearColor                           BlueTeamColor;                                     // 0x07F8(0x0010)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
 	struct FLinearColor                           GoldTeamColor;                                     // 0x0808(0x0010)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
-	uint8                                         Pad_818[0x98];                                     // 0x0818(0x0098)(Fixing Struct Size After Last Property [ Dumper-7 ])
+	uint8                                         Pad_818[0xA0];                                     // 0x0818(0x00A0)(Fixing Struct Size After Last Property [ Dumper-7 ])
 
 public:
 	void DoCommand(const struct FSwatCommand& Command, bool bFromQueue, ETeamType ActiveTeam, const struct FHitResult& ContextualData);
@@ -40307,7 +40311,7 @@ DUMPER7_ASSERTS_AWorldAction;
 
 // Class ReadyOrNot.WorldActionActivity
 // 0x00D0 (0x02E8 - 0x0218)
-class UWorldActionActivity : public UBaseActivity
+class UWorldActionActivity final : public UBaseActivity
 {
 public:
 	bool                                          bUseSingleAnimationMontage;                        // 0x0218(0x0001)(Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)

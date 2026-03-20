@@ -3246,7 +3246,7 @@ DUMPER7_ASSERTS_ReadyOrNotGameState_Multicast_OnCharacterDied;
 struct ReadyOrNotGameState_Multicast_PlaySequence final
 {
 public:
-	class ULevelSequence*                         Sequence;                                          // 0x0000(0x0008)(Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class ALevelSequenceActor*                    SequenceActor;                                     // 0x0000(0x0008)(Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_ReadyOrNotGameState_Multicast_PlaySequence;
 
@@ -3255,7 +3255,7 @@ DUMPER7_ASSERTS_ReadyOrNotGameState_Multicast_PlaySequence;
 struct ReadyOrNotGameState_Multicast_StopSequence final
 {
 public:
-	class ULevelSequence*                         Sequence;                                          // 0x0000(0x0008)(Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class ALevelSequenceActor*                    SequenceActor;                                     // 0x0000(0x0008)(Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_ReadyOrNotGameState_Multicast_StopSequence;
 
@@ -8955,7 +8955,7 @@ DUMPER7_ASSERTS_ReadyOrNotLoadoutManager_SetActiveLongTactical;
 struct ReadyOrNotLoadoutManager_SetActiveNvgStyle final
 {
 public:
-	ENVGStyle                                     NvgStyle;                                          // 0x0000(0x0001)(Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	ENVGStyle                                     NVGStyle;                                          // 0x0000(0x0001)(Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_ReadyOrNotLoadoutManager_SetActiveNvgStyle;
 
@@ -21745,6 +21745,17 @@ public:
 };
 DUMPER7_ASSERTS_CoopGM_FriendlyAIKilled;
 
+// Function ReadyOrNot.CoopGM.HasMissionTag
+// 0x000C (0x000C - 0x0000)
+struct CoopGM_HasMissionTag final
+{
+public:
+	struct FGameplayTag                           InTag;                                             // 0x0000(0x0008)(Parm, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                          ReturnValue;                                       // 0x0008(0x0001)(Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	uint8                                         Pad_9[0x3];                                        // 0x0009(0x0003)(Fixing Struct Size After Last Property [ Dumper-7 ])
+};
+DUMPER7_ASSERTS_CoopGM_HasMissionTag;
+
 // Function ReadyOrNot.CoopGM.IncapHumanKilled
 // 0x0010 (0x0010 - 0x0000)
 struct CoopGM_IncapHumanKilled final
@@ -31788,7 +31799,7 @@ DUMPER7_ASSERTS_Loadout_V2_SetLongTactical;
 struct Loadout_V2_SetNvgStyle final
 {
 public:
-	ENVGStyle                                     NvgStyle;                                          // 0x0000(0x0001)(Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	ENVGStyle                                     NVGStyle;                                          // 0x0000(0x0001)(Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_Loadout_V2_SetNvgStyle;
 
@@ -38488,6 +38499,15 @@ public:
 };
 DUMPER7_ASSERTS_ReadyOrNotGameInstance_AddReplayEvent;
 
+// Function ReadyOrNot.ReadyOrNotGameInstance.ApplyPreset
+// 0x0004 (0x0004 - 0x0000)
+struct ReadyOrNotGameInstance_ApplyPreset final
+{
+public:
+	int32                                         PresetIndex;                                       // 0x0000(0x0004)(Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_ReadyOrNotGameInstance_ApplyPreset;
+
 // Function ReadyOrNot.ReadyOrNotGameInstance.CanChangeMutedState
 // 0x0018 (0x0018 - 0x0000)
 struct ReadyOrNotGameInstance_CanChangeMutedState final
@@ -38717,6 +38737,15 @@ public:
 	class FString                                 ReturnValue;                                       // 0x0000(0x0010)(Parm, OutParm, ZeroConstructor, ReturnParm, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 DUMPER7_ASSERTS_ReadyOrNotGameInstance_GetSessionTicket;
+
+// Function ReadyOrNot.ReadyOrNotGameInstance.IsCustomPreset
+// 0x0001 (0x0001 - 0x0000)
+struct ReadyOrNotGameInstance_IsCustomPreset final
+{
+public:
+	bool                                          ReturnValue;                                       // 0x0000(0x0001)(Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+DUMPER7_ASSERTS_ReadyOrNotGameInstance_IsCustomPreset;
 
 // Function ReadyOrNot.ReadyOrNotGameInstance.IsNetworkCompatible
 // 0x000C (0x000C - 0x0000)

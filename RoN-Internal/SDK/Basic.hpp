@@ -15,8 +15,6 @@
 #include <functional>
 #include <type_traits>
 
-#define static_assert(...)
-
 #include "PropertyFixup.hpp"
 #include "UnrealContainers.hpp"
 #include "Assertions.inl"
@@ -35,11 +33,11 @@ using namespace UC;
 */
 namespace Offsets
 {
-	constexpr int32 GObjects          = 0x08CC7470;
-	constexpr int32 AppendString      = 0x00C92470;
-	constexpr int32 GNames            = 0x08BC5BB8;
-	constexpr int32 GWorld            = 0x08E35788;
-	constexpr int32 ProcessEvent      = 0x00E4D630;
+	constexpr int32 GObjects          = 0x08CC4570;
+	constexpr int32 AppendString      = 0x00C924B0;
+	constexpr int32 GNames            = 0x08BC2CB8;
+	constexpr int32 GWorld            = 0x08E32888;
+	constexpr int32 ProcessEvent      = 0x00E4D670;
 	constexpr int32 ProcessEventIdx   = 0x0000004D;
 }
 
@@ -457,17 +455,6 @@ public:
 		return ClassPtr != Other;
 	}
 };
-
-// Predefined struct FStructBaseChain
-// 0x0010 (0x0010 - 0x0000)
-struct FStructBaseChain
-{
-public:
-	FStructBaseChain**                            StructBaseChainArray;                              // 0x0000(0x0008)(NOT AUTO-GENERATED PROPERTY)
-	int32                                         NumStructBasesInChainMinusOne;                     // 0x0008(0x0004)(NOT AUTO-GENERATED PROPERTY)
-};
-DUMPER7_ASSERTS_FStructBaseChain;
-
 namespace FTextImpl
 {
 // Predefined struct FTextData
