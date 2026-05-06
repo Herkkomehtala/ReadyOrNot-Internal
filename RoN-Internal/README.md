@@ -4,9 +4,9 @@ Here's the core implementation of the internal trainer.
 
 ## Architecture
 
-*   **`Main.cpp`**: It's the entry point. Handles the main logic thread, input handling, and the hooking loop.
+*   **`Main.cpp`**: Handles the main logic thread, input handling, and the hooking loop.
 *   **`Hooks.cpp`**: `AHUD::ReceiveDrawHUD` VTable hook implementation.
-*   **`GameData.cpp`**: Thread-safe(r) entity caching needed to separate game memory reads from rendering.
+*   **`GameData.cpp`**: Hopefully a more thread safe entity caching used to separate game memory reads from rendering.
 *   **`OfficialScore.cpp`**: Memory patching logic to bypass game mod detection.
 
 ## Implementation Details

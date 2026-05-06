@@ -1,12 +1,13 @@
 # RoN-Internal
 
-A simple internal tool for *Ready or Not*. This project is developed for **educational purposes only**, focusing on game engine reversal, SDK integration, and internal rendering techniques.  
+A simple internal tool for *Ready or Not*. This project is developed for **educational purposes only**
 
-[RoN-Internal ingame](assets/Internal-console.png)  
+[RoN-Internal console](assets/Internal-console.png)  
+[RoN-Internal ingame](assets/Ingame.png)  
 
 ## Why?
 
-I've been interested in how "game cheats" work so I decided to make an internal tool to find out. Ready or Not seemed like a good option as it's a game I like and I didn't see anyone making one for the 1.0 update so here's one.
+I've been interested in how "game cheats" work so I decided to create an internal tool to find out. Ready or Not seemed like a great choice as it's a game I enjoy and I didn't find anyone making one for the 1.0 update. Here's what I built.
 
 ## Technical Overview
 - **Architecture:** Internal DLL (x64) using VTable hooking.
