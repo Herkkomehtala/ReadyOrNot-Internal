@@ -3,7 +3,7 @@
 A simple internal tool for *Ready or Not*. This project is developed for **educational purposes only**
 
 [RoN-Internal console](assets/Internal-console.png)  
-[RoN-Internal ingame](assets/Ingame.png)  
+[RoN-Internal in game](assets/ingame.png)  
 
 ## Why?
 
